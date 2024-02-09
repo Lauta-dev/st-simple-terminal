@@ -5,9 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:pixelsize=12:antialias=true:autohint=true";
+
+// :spacing=13:width=10:antialias=true:autohint=true
+static char *font = "FiraCodeNerdFontMono:size=15";
 static char *font2[] = { "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
-static int borderpx = 2;
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -74,7 +76,7 @@ static unsigned int cursorthickness = 2;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 1;
+const int boxdraw = 0;
 const int boxdraw_bold = 0;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
@@ -112,41 +114,45 @@ float alphaOffset = 0.0;
 float alphaUnfocus;
 
 /* Terminal colors (16 first used in escape sequence) */
+/* Terminal colors (16 first used in escape sequence) */
+/* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	"#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-	"#cc241d",
-	"#98971a",
-	"#d79921",
-	"#458588",
-	"#b16286",
-	"#689d6a",
-	"#a89984",
-	"#928374",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#ebdbb2",
-	[255] = 0,
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#add8e6", /* 256 -> cursor */
-	"#555555", /* 257 -> rev cursor*/
-	"#282828", /* 258 -> bg */
-	"#ebdbb2", /* 259 -> fg */
-};
+	/* 8 normal colors */
+	"#45475A",
+	"#F38BA8",
+	"#A6E3A1",
+	"#F9E2AF",
+	"#89B4FA",
+	"#F5C2E7",
+	"#94E2D5",
+	"#BAC2DE",
 
+	/* 8 bright colors */
+	"#585B70",
+	"#F38BA8",
+	"#A6E3A1",
+	"#F9E2AF",
+	"#89B4FA",
+	"#F5C2E7",
+	"#94E2D5",
+	"#A6ADC8",
+
+[256] = "#CDD6F4", /* default foreground colour */
+[257] = "#1E1E2E", /* default background colour */
+[258] = "#F5E0DC", /*575268*/
+
+};
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
-unsigned int defaultbg = 258;
-unsigned int defaultcs = 256;
-unsigned int defaultrcs = 257;
-unsigned int background = 258;
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 258;
+unsigned int background = 257;
+
 
 /*
  * Default shape of cursor
@@ -155,7 +161,7 @@ unsigned int background = 258;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 6;
 
 /*
  * Default columns and rows numbers
